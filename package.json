@@ -2,6 +2,7 @@
   "name": "plano-vscode",
   "displayName": "plano-vscode",
   "description": "Plano VSCode Extension",
+  "publisher": "plano",
   "version": "0.0.1",
   "repository": {
     "type": "git",
