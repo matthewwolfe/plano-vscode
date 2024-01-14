@@ -25,6 +25,21 @@
         "title": "New Template"
       }
     ],
+    "languages": [
+      {
+        "id": "typescript",
+        "extensions": [
+          ".ts",
+          ".tsx",
+          ".js",
+          ".jsx"
+        ],
+        "aliases": [
+          "Typescript",
+          "TS"
+        ]
+      }
+    ],
     "menus": {
       "explorer/context": [
         {
@@ -33,7 +48,13 @@
           "group": "navigation"
         }
       ]
-    }
+    },
+    "snippets": [
+      {
+        "language": "typescript",
+        "path": "./snippets.json"
+      }
+    ]
   },
   "scripts": {
     "build": "esbuild ./src/extension.ts --bundle --outfile=dist/extension.js --external:vscode --format=cjs --platform=node",
