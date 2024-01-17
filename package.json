@@ -48,13 +48,7 @@
           "group": "navigation"
         }
       ]
-    },
-    "snippets": [
-      {
-        "language": "typescript",
-        "path": "./snippets.json"
-      }
-    ]
+    }
   },
   "scripts": {
     "build": "esbuild ./src/extension.ts --bundle --outfile=dist/extension.js --external:vscode --format=cjs --platform=node",
@@ -65,10 +59,10 @@
   },
   "devDependencies": {
     "@types/mocha": "^10.0.6",
-    "@types/node": "18.x",
+    "@types/node": "^20.11.4",
     "@types/vscode": "^1.85.0",
-    "@typescript-eslint/eslint-plugin": "^6.15.0",
-    "@typescript-eslint/parser": "^6.15.0",
+    "@typescript-eslint/eslint-plugin": "^6.19.0",
+    "@typescript-eslint/parser": "^6.19.0",
     "@vscode/test-cli": "^0.0.4",
     "@vscode/test-electron": "^2.3.8",
     "esbuild": "^0.19.11",
@@ -78,6 +72,6 @@
   },
   "dependencies": {
     "lodash": "^4.17.21",
-    "plano-cli": "^0.0.17"
+    "plano-cli": "^0.0.19"
   }
 }
