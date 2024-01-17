@@ -21,6 +21,10 @@
   "contributes": {
     "commands": [
       {
+        "command": "extension.plano-vscode.snippets",
+        "title": "New Snippet"
+      },
+      {
         "command": "extension.plano-vscode.templates",
         "title": "New Template"
       }
@@ -41,6 +45,13 @@
       }
     ],
     "menus": {
+      "editor/context": [
+        {
+          "command": "extension.plano-vscode.snippets",
+          "title": "New Snippet",
+          "group": "navigation"
+        }
+      ],
       "explorer/context": [
         {
           "command": "extension.plano-vscode.templates",

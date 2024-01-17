@@ -1,14 +1,18 @@
-import * as vscode from "vscode";
-import * as path from "node:path";
-import { getAllPaths, getTemplate } from "plano-cli";
-import { input } from "../input";
-import { selection } from "../selection";
-import { worker } from "../worker";
+import * as vscode from 'vscode';
+import * as path from 'node:path';
+import { getAllPaths, getTemplate } from 'plano-cli';
+import { input } from '../input';
+import { selection } from '../selection';
+import { worker } from '../worker';
 
-export const templates = async (contextMenu: vscode.Uri) => {
+async function templates(contextMenu: vscode.Uri) {
   let disposableStatus: vscode.Disposable | undefined;
+
   try {
-    const templatePaths = getAllPaths([]);
+    const templatePaths = getAllPaths({
+      paths: [],
+      type: 'file',
+    });
 
     const name = await selection(
       templatePaths.map((templatePath) => ({
@@ -17,17 +21,21 @@ export const templates = async (contextMenu: vscode.Uri) => {
       }))
     );
 
-    const template = getTemplate({ name, paths: [] });
+    const template = getTemplate({
+      name,
+      paths: [],
+      type: 'file',
+    });
 
-    worker.on("message", async ({ type, ...args }) => {
+    worker.on('message', async ({ type, ...args }) => {
       switch (type) {
-        case "context-prompts": {
+        case 'context-prompts': {
           const { prompts } = args;
 
           const contextValues = new Map<string, string>();
 
           for (const prompt of prompts) {
-            if (prompt.type === "input") {
+            if (prompt.type === 'input') {
               const answer = await input({
                 title: prompt.message,
               });
@@ -41,41 +49,43 @@ export const templates = async (contextMenu: vscode.Uri) => {
           );
 
           return worker.postMessage({
-            type: "generate",
+            type: 'generate',
             data: {
               copyToPath: contextMenu.path,
               context: Object.fromEntries(contextValues),
               modulePath: path.resolve(
                 `${template.path}/${template.template}`,
-                "context.mjs"
+                'context.mjs'
               ),
               template,
             },
           });
         }
 
-        case "generate-success": {
+        case 'generate-success': {
           if (disposableStatus) {
             return disposableStatus.dispose();
           }
         }
 
         default: {
-          vscode.window.showErrorMessage("Something went wrong");
+          vscode.window.showErrorMessage('Something went wrong');
         }
       }
     });
 
     worker.postMessage({
-      type: "import",
+      type: 'import',
       data: {
         modulePath: path.resolve(
           `${template.path}/${template.template}`,
-          "context.mjs"
+          'context.mjs'
         ),
       },
     });
   } catch (e) {
     vscode.window.showErrorMessage(e as string);
   }
-};
+}
+
+export { templates };
