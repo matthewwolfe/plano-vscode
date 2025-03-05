@@ -9,7 +9,7 @@
     "url": "https://github.com/matthewwolfe/plano-vscode.git"
   },
   "engines": {
-    "vscode": "^1.85.0"
+    "vscode": "^1.97.0"
   },
   "categories": [
     "Snippets"
