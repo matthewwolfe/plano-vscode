@@ -3,13 +3,13 @@
   "displayName": "Plano VSCode Extension",
   "description": "A wrapper for the Plano CLI template utility",
   "publisher": "plano",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "repository": {
     "type": "git",
     "url": "https://github.com/matthewwolfe/plano-vscode.git"
   },
   "engines": {
-    "vscode": "^1.97.0"
+    "vscode": "^1.95.0"
   },
   "categories": [
     "Snippets"
@@ -71,7 +71,7 @@
   "devDependencies": {
     "@types/mocha": "^10.0.10",
     "@types/node": "^22.13.9",
-    "@types/vscode": "^1.97.0",
+    "@types/vscode": "^1.95.0",
     "@typescript-eslint/eslint-plugin": "^8.26.0",
     "@typescript-eslint/parser": "^8.26.0",
     "@vscode/test-cli": "^0.0.10",
